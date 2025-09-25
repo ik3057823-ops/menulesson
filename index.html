@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 1: Retrieval Practice and Its Importance</title>
+  <style>
+    :root{
+      --text:#111;
+      --muted:#5f6368;
+      --border:#e6e6e6;
+      --bg:#ffffff;            /* user preference: white background */
+      --panel:#ffffff;
+      --soft:#fbf8f5;          /* soft section background */
+      --pill:#f3f4f6;
+      --accent:#111;
+      --radius:18px;
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font:16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    .wrap{
+      max-width: 860px;
+      margin: 48px auto 140px;
+      padding: 0 24px;
+      transition:transform .45s cubic-bezier(.2,.8,.2,1), opacity .3s ease, filter .3s ease;
+    }
+
+    /* Hero card */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 0;
+      background:var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      border:1px solid var(--border);
+    }
+    .hero-left{padding:52px 56px}
+    h1{
+      margin:0 0 6px;
+      font-size: clamp(26px, 4.2vw, 40px);
+      line-height:1.1;
+      letter-spacing:-.01em;
+    }
+    .hero-right{
+      min-height:220px;
+      background:
+        radial-gradient(#f2c7b2 22%, transparent 24%) 0 0/120px 120px,
+        radial-gradient(#f2c7b2 22%, transparent 24%) 60px 60px/120px 120px,
+        radial-gradient(#b9dfe6 22%, transparent 24%) 0 60px/120px 120px,
+        radial-gradient(#b9dfe6 22%, transparent 24%) 60px 0/120px 120px,
+        conic-gradient(from 45deg at 25% 25%, #f8e0b3 0 25%, transparent 0 100%),
+        conic-gradient(from -45deg at 75% 75%, #f8e0b3 0 25%, transparent 0 100%),
+        repeating-linear-gradient(90deg, transparent 0 118px, #ffffff 118px 120px);
+      opacity:.95;
+    }
+
+    /* Summary + CTA */
+    .summary{
+      background:var(--soft);
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      margin-top:22px;
+      padding:28px;
+    }
+
+    /* Learn sections */
+    .learn{background:var(--soft); border:1px solid var(--border); border-radius: var(--radius); padding:30px; margin-top:18px}
+    .learn h2{font-size:18px; font-style:italic; margin:0 0 12px; color:var(--muted)}
+    .learn p{margin:0 0 18px}
+
+    .list{display:flex; flex-direction:column; gap:12px}
+
+    .item{
+      display:flex; align-items:center; justify-content:space-between;
+      background:#fff; border:1px solid var(--border);
+      border-radius:14px; padding:14px 16px; box-shadow:0 3px 10px rgba(0,0,0,.03);
+      cursor:pointer;
+    }
+    .left{display:flex; align-items:center; gap:12px}
+    .icon{
+      width:36px; height:36px; border-radius:10px; background:var(--pill);
+      display:grid; place-items:center; border:1px solid var(--border);
+    }
+    .title{font-weight:600}
+
+    .pill{font-size:14px; background:var(--pill); padding:6px 10px; border:1px solid var(--border); border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; justify-content:center; line-height:1}
+    .pill svg{width:16px;height:16px}
+
+    .item.completed .title{opacity:.8}
+    /* Completed pill becomes a full circular badge */
+    .item.completed .pill{width:28px;height:28px;padding:0;border-radius:50%;background:var(--text);border-color:var(--text)}
+    .pill svg{width:14px;height:14px}
+
+    @media (max-width: 760px){
+      .hero{grid-template-columns:1fr}
+      .hero-right{order:-1; min-height:160px}
+      .hero-left{padding:32px 26px}
+    }
+
+    /* Start button */
+    .start{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#fff;border:1px solid var(--accent);border-radius:12px;padding:12px 18px;margin-top:16px;box-shadow:0 3px 10px rgba(0,0,0,.08);font-weight:600;cursor:pointer}
+    .start svg{width:18px;height:18px}
+
+    /* Back button fixed (stays put when folding) */
+    .backwrap{padding:18px 0}
+    .back{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:8px 14px;font-weight:600;box-shadow:0 3px 10px rgba(0,0,0,.03);text-decoration:none;color:var(--text)}
+    .back svg{width:18px;height:18px}
+
+    .spacer{height:220px}
+
+    /* CTA row with progress and time */
+    .cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:8px}
+    .progress{display:flex;align-items:center;gap:10px}
+    .progress-bar{width:220px;height:6px;background:var(--pill);border:1px solid var(--border);border-radius:999px;overflow:hidden}
+    .progress-fill{height:100%;width:0%;background:var(--accent)}
+    .pct{color:var(--muted);font-weight:600;font-size:14px}
+    .pill.time{display:inline-flex;align-items:center;gap:8px}
+    .cta-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="backwrap">
+      <a href="#" class="back" onclick="history.back(); return false;" aria-label="Go back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        <span>Back</span>
+      </a>
+    </div>
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="lesson-title">
+      <div class="hero-left">
+        <h1 id="lesson-title">Lesson 1: Retrieval<br/>Practice and Its<br/>Importance</h1>
+      </div>
+      <div class="hero-right" aria-hidden="true"></div>
+    </section>
+
+    <!-- Summary & CTA -->
+    <section class="summary">
+      <p>
+        Retrieval practice is a powerful learning strategy where learners actively recall information from memory, significantly enhancing retention and transfer, making it a crucial tool for instructional designers to optimize educational outcomes.
+      </p>
+      <div class="cta-row">
+        <button class="start" type="button" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" aria-label="Start lesson and jump to menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
+          <span>Start</span>
+        </button>
+        <div class="cta-right">
+          <div class="progress" aria-label="Lesson progress">
+            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div class="progress-fill" style="width:0%"></div>
+            </div>
+            <span class="pct">0%</span>
+          </div>
+          <div class="pill time" aria-label="Estimated time 35 minutes">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <span>35 min</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Part I -->
+    <section id="menu" class="learn">
+      <h2>Part I</h2>
+      <p>Start exploring retrieval practice to boost learning power now.</p>
+      <div class="list" role="list">
+        <!-- Item 1 -->
+        <div class="item" role="listitem">
+          <div class="left">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6"/></svg></div>
+            <div class="title">Deep Dive</div>
+          </div>
+          <div class="pill" aria-label="ten minutes">10 min</div>
+        </div>
+        <!-- Item 2 -->
+        <div class="item" role="listitem">
+          <div class="left">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l6 3-6 3z"/></svg></div>
+            <div class="title">Podcast Episode</div>
+          </div>
+          <div class="pill" aria-label="seven minutes">7 min</div>
+        </div>
+        <!-- Item 3 -->
+        <div class="item" role="listitem">
+          <div class="left">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4"/><path d="M7 9v6"/><path d="M17 9v6"/><path d="M20 10v4"/><path d="M7 12h10"/></svg></div>
+            <div class="title">Key Takeaways</div>
+          </div>
+          <div class="pill" aria-label="two minutes">2 min</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Part II -->
+    <section id="menu-2" class="learn" style="margin-top:22px">
+      <h2>Part II</h2>
+      <p>Keep going with advanced applications and practice.</p>
+      <div class="list" role="list">
+        <!-- Item A -->
+        <div class="item" role="listitem">
+          <div class="left">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6"/></svg></div>
+            <div class="title">Design Tips</div>
+          </div>
+          <div class="pill" aria-label="twelve minutes">12 min</div>
+        </div>
+        <!-- Item B -->
+        <div class="item" role="listitem">
+          <div class="left">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l6 3-6 3z"/></svg></div>
+            <div class="title">Video Walkthrough</div>
+          </div>
+          <div class="pill" aria-label="nine minutes">9 min</div>
+        </div>
+        <!-- Item C -->
+        <div class="item" role="listitem">
+          <div class="left">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4"/><path d="M7 9v6"/><path d="M17 9v6"/><path d="M20 10v4"/><path d="M7 12h10"/></svg></div>
+            <div class="title">Practice Exercises</div>
+          </div>
+          <div class="pill" aria-label="eight minutes">8 min</div>
+        </div>
+        <!-- Item D -->
+        <div class="item" role="listitem">
+          <div class="left">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v20l-6-3-6 3z"/><path d="M9 7h6"/><path d="M9 11h6"/></svg></div>
+            <div class="title">Summary & Next Steps</div>
+          </div>
+          <div class="pill" aria-label="five minutes">5 min</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="spacer" aria-hidden="true"></div>
+  </main>
+
+  <script>
+  (function(){
+    // Checklist / Progress only (reverted)
+    const items = Array.from(document.querySelectorAll('.list .item'));
+    const bar = document.querySelector('.progress-fill');
+    const barWrap = document.querySelector('.progress-bar');
+    const pctLabel = document.querySelector('.pct');
+
+    items.forEach(it=>{
+      const pill = it.querySelector('.pill');
+      if(!pill) return;
+      pill.dataset.minutes = pill.textContent.trim();
+      it.setAttribute('tabindex','0');
+      it.setAttribute('role','button');
+      it.addEventListener('click', ()=> toggle(it));
+      it.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle(it);} });
+    });
+
+    function updateProgress(){
+      const total = items.length || 1;
+      const done = items.filter(i=>i.classList.contains('completed')).length;
+      const pct = Math.round((done/total)*100);
+      if(bar){ bar.style.width = pct + '%'; }
+      if(barWrap){ barWrap.setAttribute('aria-valuenow', String(pct)); }
+      if(pctLabel){ pctLabel.textContent = pct + '%'; }
+    }
+
+    function setTick(pill){
+      pill.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      pill.setAttribute('aria-label','Completed');
+      pill.parentElement?.parentElement?.classList.add('completed');
+    }
+    function setMinutes(pill){
+      pill.textContent = pill.dataset.minutes || '';
+      pill.setAttribute('aria-label','Not completed');
+    }
+    function toggle(it){
+      const pill = it.querySelector('.pill');
+      if(!pill) return;
+      const isDone = it.classList.toggle('completed');
+      if(isDone){ setTick(pill); } else { setMinutes(pill); }
+      updateProgress();
+    }
+
+    updateProgress();
+  })();
+</script>
+</body>
+</html>
