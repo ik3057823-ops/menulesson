@@ -85,7 +85,12 @@
       background:#fff; border:1px solid var(--border);
       border-radius:14px; padding:14px 16px; box-shadow:0 3px 10px rgba(0,0,0,.03);
       cursor:pointer;
+      text-decoration:none;           /* make anchors look like cards */
+      color:inherit;
     }
+    .item:focus{outline:2px solid #000; outline-offset:2px}
+    .item:hover{transform:translateY(-1px)}
+
     .left{display:flex; align-items:center; gap:12px}
     .icon{
       width:36px; height:36px; border-radius:10px; background:var(--pill);
@@ -95,11 +100,6 @@
 
     .pill{font-size:14px; background:var(--pill); padding:6px 10px; border:1px solid var(--border); border-radius:999px; white-space:nowrap; display:inline-flex; align-items:center; justify-content:center; line-height:1}
     .pill svg{width:16px;height:16px}
-
-    .item.completed .title{opacity:.8}
-    /* Completed pill becomes a full circular badge */
-    .item.completed .pill{width:28px;height:28px;padding:0;border-radius:50%;background:var(--text);border-color:var(--text)}
-    .pill svg{width:14px;height:14px}
 
     @media (max-width: 760px){
       .hero{grid-template-columns:1fr}
@@ -175,29 +175,29 @@
       <p>Start exploring retrieval practice to boost learning power now.</p>
       <div class="list" role="list">
         <!-- Item 1 -->
-        <div class="item" role="listitem">
+        <a class="item" role="listitem" href="https://ik3057823-ops.github.io/RobotPrior/">
           <div class="left">
             <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6"/></svg></div>
             <div class="title">Deep Dive</div>
           </div>
           <div class="pill" aria-label="ten minutes">10 min</div>
-        </div>
+        </a>
         <!-- Item 2 -->
-        <div class="item" role="listitem">
+        <a class="item" role="listitem" href="https://ik3057823-ops.github.io/RobotPrior/">
           <div class="left">
             <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l6 3-6 3z"/></svg></div>
             <div class="title">Podcast Episode</div>
           </div>
           <div class="pill" aria-label="seven minutes">7 min</div>
-        </div>
+        </a>
         <!-- Item 3 -->
-        <div class="item" role="listitem">
+        <a class="item" role="listitem" href="https://ik3057823-ops.github.io/RobotPrior/">
           <div class="left">
             <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4"/><path d="M7 9v6"/><path d="M17 9v6"/><path d="M20 10v4"/><path d="M7 12h10"/></svg></div>
             <div class="title">Key Takeaways</div>
           </div>
           <div class="pill" aria-label="two minutes">2 min</div>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -207,89 +207,41 @@
       <p>Keep going with advanced applications and practice.</p>
       <div class="list" role="list">
         <!-- Item A -->
-        <div class="item" role="listitem">
+        <a class="item" role="listitem" href="https://ik3057823-ops.github.io/RobotPrior/">
           <div class="left">
             <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6"/></svg></div>
             <div class="title">Design Tips</div>
           </div>
           <div class="pill" aria-label="twelve minutes">12 min</div>
-        </div>
+        </a>
         <!-- Item B -->
-        <div class="item" role="listitem">
+        <a class="item" role="listitem" href="https://ik3057823-ops.github.io/RobotPrior/">
           <div class="left">
             <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l6 3-6 3z"/></svg></div>
             <div class="title">Video Walkthrough</div>
           </div>
           <div class="pill" aria-label="nine minutes">9 min</div>
-        </div>
+        </a>
         <!-- Item C -->
-        <div class="item" role="listitem">
+        <a class="item" role="listitem" href="https://ik3057823-ops.github.io/RobotPrior/">
           <div class="left">
             <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4"/><path d="M7 9v6"/><path d="M17 9v6"/><path d="M20 10v4"/><path d="M7 12h10"/></svg></div>
             <div class="title">Practice Exercises</div>
           </div>
           <div class="pill" aria-label="eight minutes">8 min</div>
-        </div>
+        </a>
         <!-- Item D -->
-        <div class="item" role="listitem">
+        <a class="item" role="listitem" href="https://ik3057823-ops.github.io/RobotPrior/">
           <div class="left">
             <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v20l-6-3-6 3z"/><path d="M9 7h6"/><path d="M9 11h6"/></svg></div>
             <div class="title">Summary & Next Steps</div>
           </div>
           <div class="pill" aria-label="five minutes">5 min</div>
-        </div>
+        </a>
       </div>
     </section>
 
     <div class="spacer" aria-hidden="true"></div>
   </main>
-
-  <script>
-  (function(){
-    // Checklist / Progress only (reverted)
-    const items = Array.from(document.querySelectorAll('.list .item'));
-    const bar = document.querySelector('.progress-fill');
-    const barWrap = document.querySelector('.progress-bar');
-    const pctLabel = document.querySelector('.pct');
-
-    items.forEach(it=>{
-      const pill = it.querySelector('.pill');
-      if(!pill) return;
-      pill.dataset.minutes = pill.textContent.trim();
-      it.setAttribute('tabindex','0');
-      it.setAttribute('role','button');
-      it.addEventListener('click', ()=> toggle(it));
-      it.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); toggle(it);} });
-    });
-
-    function updateProgress(){
-      const total = items.length || 1;
-      const done = items.filter(i=>i.classList.contains('completed')).length;
-      const pct = Math.round((done/total)*100);
-      if(bar){ bar.style.width = pct + '%'; }
-      if(barWrap){ barWrap.setAttribute('aria-valuenow', String(pct)); }
-      if(pctLabel){ pctLabel.textContent = pct + '%'; }
-    }
-
-    function setTick(pill){
-      pill.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      pill.setAttribute('aria-label','Completed');
-      pill.parentElement?.parentElement?.classList.add('completed');
-    }
-    function setMinutes(pill){
-      pill.textContent = pill.dataset.minutes || '';
-      pill.setAttribute('aria-label','Not completed');
-    }
-    function toggle(it){
-      const pill = it.querySelector('.pill');
-      if(!pill) return;
-      const isDone = it.classList.toggle('completed');
-      if(isDone){ setTick(pill); } else { setMinutes(pill); }
-      updateProgress();
-    }
-
-    updateProgress();
-  })();
-</script>
 </body>
 </html>
